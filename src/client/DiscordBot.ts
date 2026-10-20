@@ -11,7 +11,7 @@ import CommandsListener = require("./handler/CommandsListener");
 import ComponentsHandler = require("./handler/ComponentsHandler");
 import ComponentsListener = require("./handler/ComponentsListener");
 import EventsHandler = require("./handler/EventsHandler");
-import { QuickYAML } from 'quick-yaml.db';
+import { openDatabase } from '../utils/Database';
 
 class DiscordBot extends Client {
     collection = {
@@ -37,7 +37,7 @@ class DiscordBot extends Client {
     commands_handler = new CommandsHandler(this);
     components_handler = new ComponentsHandler(this);
     events_handler = new EventsHandler(this);
-    database = new QuickYAML(config.database.path);
+    database = openDatabase(config.database.path);
 
     constructor() {
         super({
