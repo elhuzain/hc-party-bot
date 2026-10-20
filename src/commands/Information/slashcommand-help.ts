@@ -12,7 +12,7 @@ export = new ApplicationCommand({
     options: {
         cooldown: 10000
     },
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: ChatInputCommandInteraction): Promise<void> => {
         await interaction.reply({
             content: `${client.collection.application_commands.map((cmd) => '\`/' + cmd.command.name + '\`').join(', ')}`
         });

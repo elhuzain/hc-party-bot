@@ -11,7 +11,7 @@ export = new MessageCommand({
     options: {
         botOwner: true
     },
-    run: async (client, message, args) => {
+    run: async (client: DiscordBot, message: Message<true>, args: string[]): Promise<void> => {
         if (!args[0]) {
             await message.reply({
                 content: 'You must provide the code in order to execute it!'

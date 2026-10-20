@@ -12,7 +12,7 @@ export = new ApplicationCommand({
     options: {
         cooldown: 5000
     },
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: ChatInputCommandInteraction): Promise<void> => {
         await interaction.reply({
             content: '**Pong!** ' + client.ws.ping + 'ms'
         });

@@ -10,7 +10,7 @@ export = new ApplicationCommand<UserContextMenuCommandInteraction>({
     options: {
         cooldown: 5000
     },
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: UserContextMenuCommandInteraction): Promise<void> => {
         if (!interaction.inCachedGuild()) {
             await interaction.reply({ content: 'This command requires a server.', flags: MessageFlags.Ephemeral });
             return;

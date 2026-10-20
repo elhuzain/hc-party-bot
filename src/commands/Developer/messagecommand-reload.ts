@@ -12,7 +12,7 @@ export = new MessageCommand({
     options: {
         botDevelopers: true
     },
-    run: async (client, message, args) => {
+    run: async (client: DiscordBot, message: Message<true>, args: string[]): Promise<void> => {
         message = await message.reply({
             content: 'Please wait...'
         });

@@ -12,7 +12,7 @@ export = new MessageCommand({
     options: {
         cooldown: 5000
     },
-    run: async (client, message, args) => {
+    run: async (client: DiscordBot, message: Message<true>, args: string[]): Promise<void> => {
         await message.reply({
             content: '**Pong!** ' + client.ws.ping + 'ms'
         });

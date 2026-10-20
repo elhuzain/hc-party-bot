@@ -18,7 +18,7 @@ export = new ApplicationCommand({
     options: {
         botDevelopers: true
     },
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: ChatInputCommandInteraction): Promise<void> => {
         const chosen = interaction.options.getString('option', true);
 
         await interaction.reply({

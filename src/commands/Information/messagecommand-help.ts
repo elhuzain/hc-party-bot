@@ -12,7 +12,7 @@ export = new MessageCommand({
     options: {
         cooldown: 10000
     },
-    run: async (client, message, args) => {
+    run: async (client: DiscordBot, message: Message<true>, args: string[]): Promise<void> => {
         await message.reply({
             content: `${client.collection.message_commands.map((cmd) => '\`' + client.database.ensure('prefix-' + message.guild.id, config.commands.prefix) + cmd.command.name + '\`').join(', ')}`
         });

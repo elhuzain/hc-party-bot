@@ -17,7 +17,7 @@ export = new ApplicationCommand({
     options: {
         botOwner: true
     },
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: ChatInputCommandInteraction): Promise<void> => {
         await interaction.deferReply();
 
         const code = interaction.options.getString('code', true);

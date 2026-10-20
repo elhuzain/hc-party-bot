@@ -13,7 +13,7 @@ export = new ApplicationCommand({
     options: {
         botDevelopers: true
     },
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: ChatInputCommandInteraction): Promise<void> => {
         await interaction.deferReply();
 
         try {

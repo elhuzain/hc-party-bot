@@ -5,7 +5,7 @@ import Component = require("../../structure/Component");
 export = new Component<ModalSubmitInteraction>({
     customId: 'example-modal-id',
     type: 'modal',
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: ModalSubmitInteraction): Promise<void> => {
 
         const field = interaction.fields.getTextInputValue('example-modal-id-field-1');
 

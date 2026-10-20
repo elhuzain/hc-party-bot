@@ -12,7 +12,7 @@ export = new ApplicationCommand({
     options: {
         botDevelopers: true
     },
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: ChatInputCommandInteraction): Promise<void> => {
         await interaction.showModal(
             {
                 custom_id: 'example-modal-id',

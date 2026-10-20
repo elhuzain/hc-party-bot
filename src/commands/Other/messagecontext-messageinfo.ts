@@ -10,7 +10,7 @@ export = new ApplicationCommand<MessageContextMenuCommandInteraction>({
     options: {
         cooldown: 5000
     },
-    run: async (client, interaction) => {
+    run: async (client: DiscordBot, interaction: MessageContextMenuCommandInteraction): Promise<void> => {
         const target = interaction.targetMessage;
 
         if (!target) {
