@@ -12,6 +12,7 @@ import ComponentsHandler = require("./handler/ComponentsHandler");
 import ComponentsListener = require("./handler/ComponentsListener");
 import EventsHandler = require("./handler/EventsHandler");
 import { openDatabase } from '../utils/Database';
+import { Players } from '../game/Players';
 
 class DiscordBot extends Client {
     collection = {
@@ -38,6 +39,7 @@ class DiscordBot extends Client {
     components_handler = new ComponentsHandler(this);
     events_handler = new EventsHandler(this);
     database = openDatabase(config.database.path);
+    players = new Players(this.database);
 
     constructor() {
         super({

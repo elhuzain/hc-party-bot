@@ -172,3 +172,27 @@ set by bots.
 
 Restart the bot to register the new command, or use the existing reload command.
 After building, run `node tests/send-embed.cjs` to verify its payload and validation.
+
+### Game: gamble
+
+Use `/gamble coins:10 range:0–10 bet:5`. The required `coins` stake is a whole
+number from 1 to 100 and cannot exceed your balance. The optional `bet` is a
+whole number inside the selected inclusive range; leaving it out generates a
+random guess independently from the draw.
+
+Players are created on first game use with 100 coins and `lastDailyClaim: 0`
+(no claim yet). Existing records and balances are preserved.
+
+| Range | Winning payout (includes stake) |
+| --- | --- |
+| 0–5 | stake × 2 |
+| 0–10 | stake × 5 |
+| 0–100 | stake × 16 |
+| 0–1000 | stake × 50 |
+
+Only an exact match wins. A loss costs the stake. For example, staking 10 coins
+in 0–100 returns 160 coins on a win, for a net gain of 150 coins.
+Draws use Node's cryptographic random number generator. Balance settlement is
+synchronous and assumes a single bot process. No daily reward command is included yet.
+
+After building, run `node tests/players.cjs` and `node tests/gamble.cjs`.
