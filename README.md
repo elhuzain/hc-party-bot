@@ -155,3 +155,20 @@ Join our Discord server if you have any questions to ask, or if you have a probl
 
 ## License
 [**GPL-3.0**](./LICENSE), General Public License v3
+### Custom embeds
+
+Use `/send-embed` to post an embed in the current channel. Options include
+`title`, `description`, `url`, `color` (six hex digits), `author-name`,
+`author-url`, `author-icon`, `footer-text`, `footer-icon`, `image`,
+`thumbnail`, `timestamp` (`now` or an ISO 8601 date/time with timezone), and `fields`.
+
+For `fields`, enter a JSON array, for example:
+`[{"name":"Status","value":"Online","inline":true}]`.
+Up to 25 fields and 6000 total embed text characters are supported. Author links
+and icons require an author name; footer icons require footer text; title links
+require a title. URLs must use HTTP or HTTPS. Invalid input receives a private reply.
+Discord supplies video, provider, proxy URLs, and media dimensions; these cannot be
+set by bots.
+
+Restart the bot to register the new command, or use the existing reload command.
+After building, run `node tests/send-embed.cjs` to verify its payload and validation.
