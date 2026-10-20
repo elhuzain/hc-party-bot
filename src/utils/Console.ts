@@ -1,0 +1,44 @@
+import 'colors';
+import fs from 'fs';
+
+const info = (...message: unknown[]) => {
+    const time = new Date().toLocaleTimeString();
+    let fileContent = fs.readFileSync('./terminal.log', 'utf-8');
+
+    console.info(`[${time}]`.gray, '[Info]'.blue, message.join(' '));
+    fileContent += [`[${time}]`.gray, '[Info]'.blue, message.join(' ')].join(' ') + '\n';
+
+    fs.writeFileSync('./terminal.log', fileContent, 'utf-8');
+}
+
+const success = (...message: unknown[]) => {
+    const time = new Date().toLocaleTimeString();
+    let fileContent = fs.readFileSync('./terminal.log', 'utf-8');
+
+    console.info(`[${time}]`.gray, '[OK]'.green, message.join(' '));
+    fileContent += [`[${time}]`.gray, '[OK]'.green, message.join(' ')].join(' ') + '\n';
+
+    fs.writeFileSync('./terminal.log', fileContent, 'utf-8');
+}
+
+const error = (...message: unknown[]) => {
+    const time = new Date().toLocaleTimeString();
+    let fileContent = fs.readFileSync('./terminal.log', 'utf-8');
+
+    console.error(`[${time}]`.gray, '[Error]'.red, message.join(' '));
+    fileContent += [`[${time}]`.gray, '[Error]'.red, message.join(' ')].join(' ') + '\n';
+
+    fs.writeFileSync('./terminal.log', fileContent, 'utf-8');
+}
+
+const warn = (...message: unknown[]) => {
+    const time = new Date().toLocaleTimeString();
+    let fileContent = fs.readFileSync('./terminal.log', 'utf-8');
+
+    console.warn(`[${time}]`.gray, '[Warning]'.yellow, message.join(' '));
+    fileContent += [`[${time}]`.gray, '[Warning]'.yellow, message.join(' ')].join(' ') + '\n';
+
+    fs.writeFileSync('./terminal.log', fileContent, 'utf-8');
+}
+
+export { info, success, error, warn }

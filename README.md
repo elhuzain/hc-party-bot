@@ -1,6 +1,6 @@
 # <samp>DiscordJS-V14-Bot-Template</samp> v3
 
-A Discord bot commands, components and events handler based on **discord.js v14** and fully written in JavaScript.
+A Discord bot commands, components and events handler based on **discord.js v14** and fully written in TypeScript.
 
 Did you like the project? Click on the star button (⭐️) right above your screen, thank you!
 
@@ -112,7 +112,7 @@ new Event({
 - **quick-yaml.db** → latest
 
 > [!NOTE]
-> **Node.js v16.11.0** or newer is required to run **discord.js**.
+> **Node.js v22** or newer is required to run **discord.js**.
 
 ## Setup
 1. Install a code editor ([Visual Studio Code](https://code.visualstudio.com/Download) for an example).
@@ -121,20 +121,20 @@ new Event({
 4. Open your code editor, click on **Open Folder**, and select the new created folder.
 5. Rename the following files:
 
-- `src/example.config.js` → `src/config.js`: Used for handler configuration.
+- `src/example.config.ts` → `src/config.ts`: Used for handler configuration. A local `src/config.ts` is already provided; edit it or copy the example.
 - `.env.example` → `.env`: Used for secrets, like the Discord bot token.
 - `example.database.yml` → `database.yml`: Used as a main file for the database.
 - `example.terminal.log` → `terminal.log`: Used as a clone of terminal (to save previous terminal messages).
 
-6. Fill all the required values in **config.js** and **.env**.
+6. Fill all the required values in **config.ts** and **.env**.
 
 > [!CAUTION]
 > Please remember not to share your Discord bot token! This will give access to attackers to do anything they want with your bot, so please keep the token in a safe place, which is the **.env** file.
 
-7. Initialize a new project: `npm init` (To skip every step, do `npm init -y`).
-8. Install all [required dependencies](#dependencies): `npm install colors discord.js dotenv quick-yaml.db`
+7. Install dependencies: `npm install`.
+8. Check types and build: `npm run typecheck && npm run build`.
 
-9. Run the command `node .` or `npm run start` to start the bot.
+9. Run `npm start` to start the compiled bot, or `npm run dev` to run the TypeScript source during development. Rebuild after source changes before using `npm start`.
 10. Enjoy! The bot should be online.
 
 ## Contributing
