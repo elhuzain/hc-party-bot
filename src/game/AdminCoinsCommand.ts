@@ -20,7 +20,7 @@ export function createAdminCoinsCommand(action: 'add' | 'remove'): ApplicationCo
                 return;
             }
 
-            await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+            await interaction.deferReply();
             const user = interaction.options.getUser('user', true);
             const amount = interaction.options.getInteger('amount', true);
             let content: string;
