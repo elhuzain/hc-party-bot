@@ -3,7 +3,7 @@ import DiscordBot = require("../../client/DiscordBot");
 import Component = require("../../structure/Component");
 import { MessageFlags } from "discord.js";
 
-export = new Component<AnySelectMenuInteraction>({
+export = new Component({
     customId: 'example-menu-id',
     type: 'select',
     run: async (client: DiscordBot, interaction: AnySelectMenuInteraction): Promise<void> => {

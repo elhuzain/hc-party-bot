@@ -2,7 +2,7 @@ import { MessageContextMenuCommandInteraction, MessageFlags } from "discord.js";
 import DiscordBot = require("../../client/DiscordBot");
 import ApplicationCommand = require("../../structure/ApplicationCommand");
 
-export = new ApplicationCommand<MessageContextMenuCommandInteraction>({
+export = new ApplicationCommand({
     command: {
         name: 'Message Information',
         type: 3,

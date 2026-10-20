@@ -2,7 +2,7 @@ import { ModalSubmitInteraction, MessageFlags } from "discord.js";
 import DiscordBot = require("../../client/DiscordBot");
 import Component = require("../../structure/Component");
 
-export = new Component<ModalSubmitInteraction>({
+export = new Component({
     customId: 'example-modal-id',
     type: 'modal',
     run: async (client: DiscordBot, interaction: ModalSubmitInteraction): Promise<void> => {
