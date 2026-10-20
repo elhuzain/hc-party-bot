@@ -196,3 +196,16 @@ Draws use Node's cryptographic random number generator. Balance settlement is
 synchronous and assumes a single bot process. No daily reward command is included yet.
 
 After building, run `node tests/players.cjs` and `node tests/gamble.cjs`.
+
+### Administrator coin commands
+
+Administrators can use `/add-coins user:@User amount:50` and
+`/remove-coins user:@User amount:25`. Both options are required and amounts must
+be positive whole numbers. These commands enforce Administrator permission at
+runtime and are unavailable in DMs. Confirmations and errors are private.
+
+Users without a player record start with the usual 100 coins before the
+adjustment. Removing more than the balance is rejected without deducting coins.
+The commands preserve `lastDailyClaim`.
+
+After building, run `node tests/admin-coins.cjs`.

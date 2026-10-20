@@ -43,4 +43,17 @@ export class Players {
         this.database.set(this.key(userId), player);
         return player;
     }
+
+    changeCoins(userId: string, amount: number, action: 'add' | 'remove'): Player {
+        if (!Number.isSafeInteger(amount) || amount <= 0) {
+            throw new Error('The amount must be a positive whole number within the supported limit.');
+        }
+        const player = this.get(userId);
+        if (action === 'remove' && amount > player.coins) {
+            throw new Error(`This user only has ${player.coins} coins. No coins were removed.`);
+        }
+        const coins = action === 'add' ? player.coins + amount : player.coins - amount;
+        if (!Number.isSafeInteger(coins)) throw new Error('This would exceed the maximum supported balance.');
+        return this.update(userId, { coins });
+    }
 }
