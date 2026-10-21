@@ -1,5 +1,8 @@
 import type { QuickYAML } from 'quick-yaml.db';
 
+export const DAILY_REWARD = 100;
+export const DAILY_INTERVAL_MS = 24 * 60 * 60 * 1000;
+
 export interface Player {
     coins: number;
     /** Unix timestamp in milliseconds; 0 means no daily reward claimed yet. */
@@ -42,6 +45,25 @@ export class Players {
         validatePlayer(player);
         this.database.set(this.key(userId), player);
         return player;
+    }
+
+    /** Check eligibility and persist the reward and claim time together synchronously. */
+    claimDaily(userId: string, now = Date.now()) {
+        if (!Number.isSafeInteger(now) || now <= 0) throw new Error('Invalid claim time.');
+        const player = this.get(userId);
+        const nextClaimAt = player.lastDailyClaim + DAILY_INTERVAL_MS;
+        if (player.lastDailyClaim !== 0 && now < nextClaimAt) {
+            return { claimed: false as const, player, nextClaimAt };
+        }
+        const coins = player.coins + DAILY_REWARD;
+        if (!Number.isSafeInteger(coins)) {
+            throw new Error('This reward would exceed the maximum supported balance.');
+        }
+        return {
+            claimed: true as const,
+            player: this.update(userId, { coins, lastDailyClaim: now }),
+            nextClaimAt: now + DAILY_INTERVAL_MS,
+        };
     }
 
     /** Validate both balances before transferring, without yielding between writes. */
