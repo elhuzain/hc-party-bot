@@ -30,9 +30,8 @@ class DiscordBot extends Client {
     login_attempts = 0;
     login_timestamp = 0;
     statusMessages: ActivityOptions[] = [
-        { name: 'Status 1', type: 4 },
-        { name: 'Status 2', type: 4 },
-        { name: 'Status 3', type: 4 }
+        { name: 'Welcome to H.C Party!', type: 4 },
+        { name: 'Enjoy your stay!', type: 4 },
     ];
 
     commands_handler = new CommandsHandler(this);
