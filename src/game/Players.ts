@@ -44,6 +44,27 @@ export class Players {
         return player;
     }
 
+    /** Validate both balances before transferring, without yielding between writes. */
+    transferCoins(senderId: string, recipientId: string, amount: number) {
+        if (senderId === recipientId) throw new Error('You cannot give coins to yourself.');
+        if (!Number.isSafeInteger(amount) || amount <= 0) {
+            throw new Error('The amount must be a positive whole number within the supported limit.');
+        }
+        const sender = this.get(senderId);
+        if (amount > sender.coins) {
+            throw new Error(`You only have ${sender.coins} coins. Choose a smaller amount.`);
+        }
+        const recipient = this.get(recipientId);
+        const recipientBalance = recipient.coins + amount;
+        if (!Number.isSafeInteger(recipientBalance)) {
+            throw new Error('This would exceed the recipient’s maximum supported balance.');
+        }
+        return {
+            sender: this.update(senderId, { coins: sender.coins - amount }),
+            recipient: this.update(recipientId, { coins: recipientBalance }),
+        };
+    }
+
     changeCoins(userId: string, amount: number, action: 'add' | 'remove'): Player {
         if (!Number.isSafeInteger(amount) || amount <= 0) {
             throw new Error('The amount must be a positive whole number within the supported limit.');
