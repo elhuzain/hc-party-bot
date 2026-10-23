@@ -1,8 +1,8 @@
 node_modules
 
 # DO NOT REMOVE THESE FOR SECURITY
-src/config.js
-src/config.ts
+# src/config.js
+# src/config.ts
 .env
 database.yml
 terminal.log
